@@ -2,29 +2,73 @@
 
 This is a full-stack web application for a gallery shop that supports user authentication through Google login, and is built using **Node.js**, **Express**, **React**, **Chakra UI**, and **PostgreSQL**.
 
-## Project Structure
+## 📁 Project Structure - Rembrandt Gallery Shop
 
-The project is structured as follows:
+This project is structured into two main parts: the **backend** built with Node.js and Express, and the **frontend** built with React + Vite.
 
-/rembrandt-gallery-shop
-/backend # Backend code (Node.js + Express)
-/config # Database configuration and environment variables
-/models # Database models (e.g., User)
-/routes # API routes (e.g., authentication, products)
-/controllers # Logic to handle requests and responses
-server.js # Main entry point for the backend server
-/frontend # Frontend code (React + Chakra UI)
-/src
-/components # Reusable components for the UI
-/hooks # Custom React hooks
-/pages # Different pages like Login, Dashboard, etc.
-App.js # Main React component
-public
-index.html # HTML file that renders the React app
-package.json # Frontend dependencies and scripts
-.gitignore # Git ignore file for sensitive and unnecessary files
-.env # Environment variables (e.g., GOOGLE_CLIENT_ID, JWT_SECRET)
-README.md # Project documentation
+---
+
+### 🔧 Backend (Node.js + Express + PostgreSQL)
+
+```
+backend/
+├── config/
+│   └── dbConfig.js
+├── controllers/
+│   └── productController.js
+├── middleware/
+├── models/
+│   ├── index.js
+│   ├── product.js
+│   └── user.js
+├── routes/
+│   ├── authRoutes.js
+│   ├── productRoutes.js
+│   └── userRoutes.js
+├── database/
+├── .env
+├── server.js
+├── package.json
+└── package-lock.json
+```
+
+---
+
+### 🎨 Frontend (React + Vite)
+
+```
+frontend/
+├── public/
+│   ├── index.html
+│   ├── favicon.ico
+│   ├── logo192.png
+│   ├── logo512.png
+│   ├── manifest.json
+│   └── robots.txt
+├── src/
+│   ├── App.js
+│   ├── App.css
+│   ├── App.test.js
+│   ├── index.js
+│   ├── index.css
+│   ├── logo.svg
+│   ├── reportWebVitals.js
+│   └── setupTests.js
+├── .env
+├── package.json
+└── package-lock.json
+```
+
+---
+
+### 📦 Project Root
+
+```
+.gitignore
+README.md
+```
+
+> PostgreSQL is used as the main database, managed by a dedicated user `rembrandt_user`. The first implemented service is user authentication via Google.
 
 
 ## Installation
