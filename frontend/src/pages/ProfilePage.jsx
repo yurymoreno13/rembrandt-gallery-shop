@@ -1,33 +1,39 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { Box, Heading, Text, Avatar, VStack } from '@chakra-ui/react';
+// frontend/src/pages/ProfilePage.jsx
 
-function ProfilePage() {
-  const [user, setUser] = useState(null);
+import React from 'react';
+import { Box, Heading, Text, Avatar, Stack } from '@chakra-ui/react';
+import { useAuth } from '../context/AuthContext';
+import MainLayout from '../components/MainLayout';
 
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    axios.get('http://localhost:5000/api/users/me', {
-      headers: { Authorization: `Bearer ${token}` },
-    })
-    .then(res => setUser(res.data))
-    .catch(() => setUser(null));
-  }, []);
+const ProfilePage = () => {
+  const { user } = useAuth();
 
-  if (!user) return <Text p={10}>Unauthorized or user not found</Text>;
+  if (!user) {
+    return (
+      <MainLayout>
+        <Box p={6}>
+          <Heading>Perfil</Heading>
+          <Text mt={4}>No estás autenticado</Text>
+        </Box>
+      </MainLayout>
+    );
+  }
 
   return (
-    <Box p={10}>
-      <Heading mb={4}>User Profile</Heading>
-      <VStack spacing={4} align="start">
-        {user.picture && <Avatar name={user.name} src={user.picture} size="xl" />}
-        <Text><strong>Name:</strong> {user.name}</Text>
-        <Text><strong>Email:</strong> {user.email}</Text>
-        <Text><strong>ID:</strong> {user.id}</Text>
-      </VStack>
-    </Box>
+    <MainLayout>
+      <Box p={6}>
+        <Heading mb={6}>Perfil del Usuario</Heading>
+        <Stack direction="row" spacing={6} align="center">
+          <Avatar size="xl" name={user.name} src={user.avatar} />
+          <Box>
+            <Text fontSize="lg"><strong>Nombre:</strong> {user.name}</Text>
+            <Text fontSize="lg"><strong>Email:</strong> {user.email}</Text>
+            <Text fontSize="lg"><strong>ID:</strong> {user._id || 'No disponible'}</Text>
+          </Box>
+        </Stack>
+      </Box>
+    </MainLayout>
   );
-}
+};
 
 export default ProfilePage;
-

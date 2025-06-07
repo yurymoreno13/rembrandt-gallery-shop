@@ -1,3 +1,5 @@
+// frontend/src/pages/RegisterPage.jsx
+
 import React from 'react';
 import { useState } from 'react';
 import { Box, Input, Button, Heading, VStack } from '@chakra-ui/react';
